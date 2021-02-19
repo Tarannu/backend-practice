@@ -9,7 +9,8 @@
   "license": "ISC",
   "dependencies": {
     "export": "^0.1.337",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "joi": "^17.4.0"
   },
   "keywords": [],
   "description": ""
