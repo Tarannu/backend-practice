@@ -19,10 +19,10 @@ app.get('/books',(req,res)=>{
     res.send(books);
 });
 
-// /api/courses/1
+//get book by status
 app.get('/books/:sta',(req,res)=>{
     
-    const book=books.find(c=>c.sta===parseInt(req.params.sta));
+    const book=books.find(c=>c.sta===req.params.sta);
     if(!book){
         res.status(404).send('The book given with the status was not found')
     }
@@ -31,12 +31,39 @@ app.get('/books/:sta',(req,res)=>{
 
 //post book
 app.post('/books',(req,res)=>{
+    //prevent duplicate books
     const book={
         id:books.length+1,
         bookName:req.body.bookName,
         authorName:req.body.authorName,
-        state
+        sta:req.body.sta
     }
+    books.push(book);
+    res.send(book);
+});
+
+//delete book
+app.delete('/books/:id',(req,res)=>{
+    const book=books.find(c=>c.id===parseInt(req.params.id));
+    if(!book) res.status.send('The course with the given Book name was not found');
+
+
+    const index=books.indexOf(book);
+    books.splice(index,1);
+
+    res.send(book);
+})
+
+//put status
+app.put('/books/:bookName',(req,res)=>{
+    const book=books.find(c=>c.bookName===req.params.bookName);
+    if(!book) res.status.send('The course with the given Book name was not found');
+    
+    //validate
+
+    //update
+    book.sta=req.body.sta;
+    res.send(book);
 });
 
 //PORT
