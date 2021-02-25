@@ -45,8 +45,10 @@ app.post('/books',(req,res)=>{
 //delete book
 app.delete('/books/:id',(req,res)=>{
     const book=books.find(c=>c.id===parseInt(req.params.id));
-    if(!book) res.status.send('The course with the given Book name was not found');
-
+    if(!book) {
+        res.status.send('The course with the given Book name was not found');
+        return;  
+    }
 
     const index=books.indexOf(book);
     books.splice(index,1);
