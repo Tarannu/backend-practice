@@ -9,8 +9,10 @@ app.use(bodyParser.json());
 
 //import routes
 const postsRoute=require('./routes/posts');
+const moviesRoute=require('./routes/movies');
 
 app.use('/Post',postsRoute);
+app.use('/Movies',moviesRoute);
 
 //Routes
 app.get('/',(req,res)=>{
