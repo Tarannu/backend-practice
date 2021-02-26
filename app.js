@@ -1,8 +1,16 @@
 const express=require('express');
 const mongoose=require('mongoose');
+const bodyParser=require('body-parser');
 require('dotenv/config');
 
 const app=express();
+
+app.use(bodyParser.json());
+
+//import routes
+const postsRoute=require('./routes/posts');
+
+app.use('/Post',postsRoute);
 
 //Routes
 app.get('/',(req,res)=>{
